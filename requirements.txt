@@ -4,3 +4,4 @@ scipy
 sklearn
 skimage
 scikit-image
+opencv-python
