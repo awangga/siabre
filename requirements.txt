@@ -2,3 +2,5 @@ tensorflow-gpu
 matplotlib
 scipy
 sklearn
+skimage
+scikit-image
