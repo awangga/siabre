@@ -1,3 +1,5 @@
+import os
+import pickle
 from lib.omniglot import loadimgs,initialize_weights,initialize_bias,get_siamese_model,get_batch,make_oneshot_task,test_oneshot
 
 train_folder = "./images_background/"
@@ -17,7 +19,7 @@ with open(os.path.join(save_path,"val.pickle"), "wb") as f:
 model = get_siamese_model((105, 105, 1))
 model.summary()
 from tensorflow.keras.utils import plot_model
-plot_model(model, to_file='model.png')
+#plot_model(model, to_file='model.png')
 
 optimizer = Adam(lr = 0.00006)
 model.compile(loss="binary_crossentropy",optimizer=optimizer)
