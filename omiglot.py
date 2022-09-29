@@ -1,5 +1,7 @@
 import os
+import time
 import pickle
+from tensorflow.keras.optimizers import Adam
 from lib.omniglot import loadimgs,initialize_weights,initialize_bias,get_siamese_model,get_batch,make_oneshot_task,test_oneshot
 
 train_folder = "./images_background/"
@@ -45,21 +47,19 @@ N_way = 20 # how many classes for testing one-shot tasks
 n_val = 250 # how many one-shot tasks to validate on
 best = -1
 
-(inputs,targets) = get_batch(batch_size)
-
 model_path = './weights/'
 
 print("Starting training process!")
 print("-------------------------------------")
 t_start = time.time()
 for i in range(1, n_iter+1):
-    (inputs,targets) = get_batch(batch_size)
+    (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,)
     loss = model.train_on_batch(inputs, targets)
     if i % evaluate_every == 0:
         print("\n ------------- \n")
         print("Time for {0} iterations: {1} mins".format(i, (time.time()-t_start)/60.0))
         print("Train Loss: {0}".format(loss)) 
-        val_acc = test_oneshot(model, N_way, n_val, verbose=True)
+        val_acc = test_oneshot(model, Xtrain,Xval,train_classes,val_classes,N_way, n_val, verbose=True)
         model.save_weights(os.path.join(model_path, 'weights.{}.h5'.format(i)))
         if val_acc >= best:
             print("Current best: {0}, previous best: {1}".format(val_acc, best))
