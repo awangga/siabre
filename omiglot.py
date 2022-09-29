@@ -47,7 +47,7 @@ N_way = 20 # how many classes for testing one-shot tasks
 n_val = 250 # how many one-shot tasks to validate on
 best = -1
 
-model_path = './weights/'
+model_path = 'R:\\awangga\w'
 
 print("Starting training process!")
 print("-------------------------------------")
