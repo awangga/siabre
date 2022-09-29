@@ -47,7 +47,7 @@ def simpanMSE(pxlb,piksel,matfile):
     return mse
     
 def simpanMSEMiyawaki():
-    directory='../'
+    directory='data/'
     #matfilename='s1_V1_Ecc1to11_baseByRestPre_smlr_s1071119ROI_resol10_figRecon_linComb-no_opt_1x1_maxProbLabel_dimNorm.mat'
     matfilename='s1_V1_Ecc1to11_baseByRestPre_smlr_s1071119ROI_resol10_figRecon_linComb-errFuncImageNonNegCon_1x1_maxProbLabel_dimNorm.mat'
     matfile=directory+matfilename
