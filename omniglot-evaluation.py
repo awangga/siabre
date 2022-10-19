@@ -24,7 +24,10 @@ val_accs, train_accs,nn_accs = [], [], []
 for N in ways:    
     val_accs.append(test_oneshot(model, Xtrain,Xval,train_classes,val_classes,N, trials, s="val", verbose=True))
     train_accs.append(test_oneshot(model, Xtrain,Xval,train_classes,val_classes,N, trials, s="train", verbose=True))
-    nn_acc = test_nn_accuracy(N, trials)
+    nn_acc = test_nn_accuracy(N, trials,Xtrain,Xval,train_classes,val_classes)
     nn_accs.append(nn_acc)
     print ("NN Accuracy = ", nn_acc)
     print("---------------------------------------------------------------------------------------------------------------")
+
+with open(os.path.join(save_path,"accuracies.pickle"), "wb") as f:
+    pickle.dump((val_accs,train_accs,nn_accs),f)
