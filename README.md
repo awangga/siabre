@@ -16,9 +16,22 @@ c:dict 30 : 0,19 ... 909,963
 0,19 ... 909,963 : start-end(alfabetical in a type script)
 
 use lib/omniglot
-1. omniglot-prepro : load image folder and save to pickle 
-2. omniglot-trainig : load picke and train model
-3. omniglot-evaluation
-4. omniglot-result
+### omniglot-prepro
+load image folder and save to pickle 
+### omniglot-trainig
+* load pickle. 
+* get siamese model, set optimizer and loss and then compile model.
+* do for loop for n_iter
+  * get_batch to fill : inputs,targets
+  * get loss from model.train_on_batch(inputs, targets)
+  * get validation accuracy with test one shoot using data_val (different from train_on_batch)
+    * N_way : how many picture in one char folder
+    * n__val : how many one shoot task
+  * model.save_weights
+  * save best of val accuration
+### omniglot-evaluation
+ok
+### omniglot-result
+ok
 
 ### one shoot
