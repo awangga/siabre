@@ -2,7 +2,7 @@ import os
 import time
 import pickle
 from tensorflow.keras.optimizers import Adam
-from lib.omniglot import loadimgs,initialize_weights,initialize_bias,get_siamese_model,get_batch,make_oneshot_task,test_oneshot
+from miyawaki.omniglot import loadimgs,initialize_weights,initialize_bias,get_siamese_model,get_batch,make_oneshot_task,test_oneshot
 
 train_folder = "./images_background/"
 val_folder = './images_evaluation/'
@@ -43,7 +43,7 @@ print(list(val_classes.keys()))
 evaluate_every = 200 # interval for evaluating on one-shot tasks
 batch_size = 32
 n_iter = 20000 # No. of training iterations
-N_way = 20 # how many classes for testing one-shot tasks, banyak gambar per karakter
+N_way = 20 # how many classes for testing one-shot tasks, banyaknya gambar di dalam satu karakter
 n_val = 250 # how many one-shot tasks to validate on
 best = -1
 
