@@ -1,8 +1,4 @@
-import os
-import time
-import pickle
 from config import train_folder,val_folder,save_path,trainfname,valfname
-from tensorflow.keras.optimizers import Adam
 from lib.omniglot import ImgToPicke,loadPickle
 
 X,y,c=ImgToPicke(train_folder,save_path,trainfname)
