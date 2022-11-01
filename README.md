@@ -16,8 +16,9 @@ c:dict 30 : 0,19 ... 909,963
 0,19 ... 909,963 : start-end(alfabetical in a type script)
 
 use lib/omniglot
-1. omniglot-trainig
-2. omniglot-evaluation
-3. omniglot-result
+1. omniglot-prepro : load image folder and save to pickle 
+2. omniglot-trainig : load picke and train model
+3. omniglot-evaluation
+4. omniglot-result
 
 ### one shoot
