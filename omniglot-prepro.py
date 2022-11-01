@@ -6,8 +6,8 @@ Xval,yval,cval=ImgToPicke(val_folder,save_path,valfname)
 
 input('press to continue load')
 
-Xtrain, train_classes=loadPickle(trainfname)
-Xval, val_classes=loadPickle(valfname)
+Xtrain, train_classes=loadPickle(save_path,trainfname)
+Xval, val_classes=loadPickle(save_path,valfname)
 
 print("Training alphabets: \n")
 print(list(train_classes.keys()))

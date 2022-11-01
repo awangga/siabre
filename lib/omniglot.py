@@ -40,10 +40,10 @@ def ImgToPicke(img_folder,save_path,picklefname):
         pickle.dump((X,c),f)
     return X,y,c
 
-def loadPickle(picklefname):
+def loadPickle(save_path,picklefname):
     with open(os.path.join(save_path, picklefname), "rb") as f:
         return pickle.load(f)
-        
+
 def loadimgs(path,n = 0):
     '''
     path => Path of train directory or test directory
