@@ -54,6 +54,11 @@ print("-------------------------------------")
 t_start = time.time()
 for i in range(1, n_iter+1):
     (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,)
+    print('input : ')
+    print(inputs)
+    print('output : ')
+    print(targets)
+    print('input : '+str(len(inputs))+' output : '+str(len(targets)))
     loss = model.train_on_batch(inputs, targets)
     if i % evaluate_every == 0:
         print("\n ------------- \n")
