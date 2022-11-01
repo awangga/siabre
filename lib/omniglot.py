@@ -33,6 +33,17 @@ from sklearn.utils import shuffle
 
 import numpy.random as rng
 
+
+def ImgToPicke(img_folder,save_path,picklefname):
+    X,y,c=loadimgs(img_folder) 
+    with open(os.path.join(save_path,picklefname), "wb") as f:
+        pickle.dump((X,c),f)
+    return X,y,c
+
+def loadPickle(picklefname):
+    with open(os.path.join(save_path, picklefname), "rb") as f:
+        return pickle.load(f)
+        
 def loadimgs(path,n = 0):
     '''
     path => Path of train directory or test directory
