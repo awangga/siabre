@@ -7,23 +7,35 @@ from config import save_path,trainfname,valfname,model_path,lr,evaluate_every,ba
 Xtrain, train_classes=loadPickle(save_path,trainfname)
 Xval, val_classes=loadPickle(save_path,valfname)
 
-print("Training alphabets: \n")
+print("=======================================Training alphabets=======================================")
+print(Xtrain.shape) # (964, 20, 105, 105) 20 picture per char
+print(train_classes)
 print(list(train_classes.keys()))
-print("Validation alphabets:", end="\n\n")
+print("=======================================Validation alphabets=====================================")
+print(Xval.shape) # (659, 20, 105, 105) 20 picture per char different from training set
+print(val_classes)
 print(list(val_classes.keys()))
 ############################################
-model = get_siamese_model((105, 105, 1))
+model = get_siamese_model((105, 105, 1))# input pixel
 model.summary()
-from tensorflow.keras.utils import plot_model
-#plot_model(model, to_file='model.png')
-optimizer = Adam(lr = lr)
+# from tensorflow.keras.utils import plot_model
+# #plot_model(model, to_file='model.png')
+optimizer = Adam(learning_rate = lr)
 model.compile(loss="binary_crossentropy",optimizer=optimizer)
 print("Starting training process!")
 print("-------------------------------------")
 t_start = time.time()
-for i in range(1, n_iter+1):
-    (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,)
+for i in range(1, n_iter+1):# No. of training iterations 20000
+    (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,) 
+    print(len(inputs))#2x32x105x105
+    print(len(inputs[0]))
+    print(len(inputs[0][0]))
+    print(len(inputs[0][0][0]))
+    print(len(inputs[0][0][0][0]))
+    print(len(targets))
+    print(targets) #(0....0,1....1) 16 => 0 ; 16 => 1
     loss = model.train_on_batch(inputs, targets)
+    print(loss)
     if i % evaluate_every == 0:
         print("\n ------------- \n")
         print("Time for {0} iterations: {1} mins".format(i, (time.time()-t_start)/60.0))

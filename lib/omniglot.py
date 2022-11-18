@@ -148,7 +148,7 @@ def get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,s="train"):
     else:
         X = Xval
         categories = val_classes
-    n_classes, n_examples, w, h = X.shape
+    n_classes, n_examples, w, h = X.shape # (964, 20, 105, 105)
 
     # randomly sample several classes to use in the batch
     categories = rng.choice(n_classes,size=(batch_size,),replace=False)
