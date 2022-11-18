@@ -4,7 +4,6 @@ from tensorflow.keras.optimizers import Adam
 from lib.omniglot import loadPickle,get_siamese_model,get_batch,test_oneshot
 from config import save_path,trainfname,valfname,model_path,lr,evaluate_every,batch_size,n_iter,N_way,n_val,best
 
-
 Xtrain, train_classes=loadPickle(save_path,trainfname)
 Xval, val_classes=loadPickle(save_path,valfname)
 
