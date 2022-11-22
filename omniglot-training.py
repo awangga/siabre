@@ -31,9 +31,11 @@ for i in range(1, n_iter+1):# No. of training iterations 20000
     print(len(inputs))#2x32x105x105
     left=inputs[0][31][:,:,0]
     plt.imshow(left,cmap='hot')
+    plt.show()
     right=inputs[1][31][:,:,0]
     plt.imshow(right,cmap='hot')
-    print(targets) #(0....0,1....1) 16 => 0 ; 16 => 1
+    plt.show()
+    print(targets) #(0....0,1....1) 16 => 0 artinya gambar tidak sama ; 16 => 1 artinya gambar sama
     loss = model.train_on_batch(inputs, targets)
     print(loss)
     if i % evaluate_every == 0:
