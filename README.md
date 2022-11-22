@@ -22,7 +22,7 @@ load image folder and save to pickle
 * load pickle. 
 * get siamese model, set optimizer and loss and then compile model.
 * do for loop for n_iter
-  * get_batch to fill : inputs(2,32,105,105)2 for left and right input nets,targets(32)0 for 16 and 1 for next 16.
+  * get_batch to fill : inputs(2,32,105,105,1)2 for left and right input nets,targets(32)0 for 16 and 1 for next 16.
   * get loss from model.train_on_batch(inputs, targets)
   * get validation accuracy with test one shoot using data_val (different from train_on_batch)
     * N_way : how many picture in one char folder
