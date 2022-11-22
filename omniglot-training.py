@@ -1,5 +1,6 @@
 import os
 import time
+import matplotlib.pyplot as plt
 from tensorflow.keras.optimizers import Adam
 from lib.omniglot import loadPickle,get_siamese_model,get_batch,test_oneshot
 from config import save_path,trainfname,valfname,model_path,lr,evaluate_every,batch_size,n_iter,N_way,n_val,best
@@ -28,8 +29,10 @@ t_start = time.time()
 for i in range(1, n_iter+1):# No. of training iterations 20000
     (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,) 
     print(len(inputs))#2x32x105x105
-    left=inputs[0][0]
-    right=inputs[1][0]
+    left=inputs[0][31][:,:,0]
+    plt.imshow(left,cmap='hot')
+    right=inputs[1][31][:,:,0]
+    plt.imshow(right,cmap='hot')
     print(targets) #(0....0,1....1) 16 => 0 ; 16 => 1
     loss = model.train_on_batch(inputs, targets)
     print(loss)
