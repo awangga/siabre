@@ -218,15 +218,15 @@ def make_oneshot_task(N,Xtrain,Xval,train_classes,val_classes, s="val", language
 
 def test_oneshot(model, Xtrain,Xval,train_classes,val_classes,N, k, s = "val", verbose = 0):#tambah 4 parameter sesudah model
     """Test average N way oneshot learning accuracy of a siamese neural net over k one-shot tasks"""
-    n_correct = 0
+    n_correct = 0 #berapa yang bener nya
     if verbose:
         print("Evaluating model on {} random {} way one-shot learning tasks ... \n".format(k,N))
     for i in range(k):
         inputs, targets = make_oneshot_task(N,Xtrain,Xval,train_classes,val_classes,s)
         probs = model.predict(inputs)
         if np.argmax(probs) == np.argmax(targets):
-            n_correct+=1
-    percent_correct = (100.0 * n_correct / k)
+            n_correct+=1#klo bener tambah 1
+    percent_correct = (100.0 * n_correct / k) # yang bener berapa/jumlah ujicoba
     if verbose:
         print("Got an average of {}% {} way one-shot learning accuracy \n".format(percent_correct,N))
     return percent_correct
