@@ -28,8 +28,8 @@ t_start = time.time()
 for i in range(1, n_iter+1):# No. of training iterations 20000
     (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,) 
     print(len(inputs))#2x32x105x105
-    left=inputs[0]
-    right=inputs[1]
+    left=inputs[0][0]
+    right=inputs[1][0]
     print(targets) #(0....0,1....1) 16 => 0 ; 16 => 1
     loss = model.train_on_batch(inputs, targets)
     print(loss)
