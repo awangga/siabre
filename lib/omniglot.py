@@ -131,7 +131,7 @@ def get_siamese_model(input_shape):
     L1_layer = Lambda(lambda tensors:K.abs(tensors[0] - tensors[1]))
     L1_distance = L1_layer([encoded_l, encoded_r])
     
-    # Add a dense layer with a sigmoid unit to generate the similarity score
+    # Add a dense layer with a sigmoid unit to generate the similarity score, dense modif ke outputan 28x28=784 atau 10*10=100
     prediction = Dense(1,activation='sigmoid',bias_initializer=initialize_bias)(L1_distance)
     
     # Connect the inputs with the outputs
