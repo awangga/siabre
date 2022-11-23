@@ -30,8 +30,19 @@ from keras.regularizers import l2
 from keras import backend as K
 
 from sklearn.utils import shuffle
-
+from scipy.io import savemat, loadmat
+from sklearn import preprocessing
 import numpy.random as rng
+
+def getDataset69(datapath):
+    handwriten_69=loadmat(datapath)
+    Y_train = handwriten_69['fmriTrn']
+    Y_test = handwriten_69['fmriTest']
+
+    X_train = handwriten_69['stimTrn']#90 gambar dalam baris isi per baris 784
+    X_test = handwriten_69['stimTest']#10 gambar dalam baris isi 784
+    X_train = X_train.astype('float32') / 255.
+    X_test = X_test.astype('float32') / 255.
 
 def initialize_weights(shape, dtype=None):
     """
