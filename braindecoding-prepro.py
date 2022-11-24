@@ -2,7 +2,7 @@
 from lib import braindecoding as bd
 from matplotlib.pyplot import imshow,imsave
 import numpy as np
-# In[]: Load dataset
+# In[]: Load dataset, setengah pertama 6 setengah kedua 9
 
 X_train,X_test,Y_train,Y_test = bd.getDataset69('./data/digit69_28x28.mat')
 
@@ -29,4 +29,11 @@ for image in X_train2D:
     imsave(fname,img)
     idx += 1
 
+# %%
+stim6 = X_test2D[:5,:,:]
+#for img in stim6:
+#    imshow(img.transpose())
+stim9 = X_test2D[5:,:,:]
+for img in stim9:
+    imshow(img.transpose())
 # %%
