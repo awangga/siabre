@@ -9,12 +9,12 @@ Xtrain, train_classes=loadPickle(save_path,trainfname)
 Xval, val_classes=loadPickle(save_path,valfname)
 
 
-model = get_siamese_model((105, 105, 1))# input pixel
+model = get_siamese_model((3092))# input pixel
 optimizer = Adam(learning_rate = lr)
 model.compile(loss="binary_crossentropy",optimizer=optimizer)
 model.summary()
 
-
+t_start = time.time()
 for i in range(1, n_iter+1):# No. of training iterations 20000
     (inputs,targets) = get_batch(batch_size,Xtrain,Xval,train_classes,val_classes,)
     loss = model.train_on_batch(inputs, targets)

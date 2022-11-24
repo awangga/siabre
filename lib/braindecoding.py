@@ -1,48 +1,49 @@
 import sys
 import numpy as np
 import pandas as pd
-from imageio import imread
 import pickle
 import os
 import matplotlib
 import matplotlib.pyplot as plt
-
-
-import cv2
 import time
 
-import tensorflow as tf
-from keras.models import Sequential
-from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
-from keras.models import Model
-
-from tensorflow.keras.layers import BatchNormalization
-#from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D
-from tensorflow.keras.layers import concatenate
-#from keras.layers.merge import Concatenate
-from keras.layers.core import Lambda, Flatten, Dense
-from keras.initializers import glorot_uniform
-
-from tensorflow.keras.layers import Layer
-#from keras.engine.topology import Layer
-from keras.regularizers import l2
-from keras import backend as K
-
-from sklearn.utils import shuffle
-from scipy.io import savemat, loadmat
+from scipy.io import loadmat
 from sklearn import preprocessing
 import numpy.random as rng
+
+
+from keras.models import Sequential
+from keras.layers import Input
+from keras.models import Model
+from keras.layers.core import Lambda, Dense
+
+from keras.regularizers import l2
+from keras import backend as K
 
 def getDataset69(datapath):
     handwriten_69=loadmat(datapath)
     Y_train = handwriten_69['fmriTrn']
     Y_test = handwriten_69['fmriTest']
 
-    X_train = handwriten_69['stimTrn']#90 gambar dalam baris isi per baris 784
-    X_test = handwriten_69['stimTest']#10 gambar dalam baris isi 784
-    X_train = X_train.astype('float32') / 255.
-    X_test = X_test.astype('float32') / 255.
+    X_train = handwriten_69['stimTrn'].astype('float32') / 255. #90 gambar dalam baris isi per baris 784
+    X_test = handwriten_69['stimTest'].astype('float32') / 255. #10 gambar dalam baris isi 784
+    return X_train,X_test,Y_train,Y_test
+
+def reshape2D(X_train,X_test):
+    resolution = 28
+    #channel di depan
+    X_train = X_train.reshape([X_train.shape[0], resolution, resolution])
+    X_test = X_test.reshape([X_test.shape[0], resolution, resolution])
+    #channel di belakang(edit rolly)
+    #X_train = X_train.reshape([X_train.shape[0], resolution, resolution, 1])
+    #X_test = X_test.reshape([X_test.shape[0], resolution, resolution, 1])
+    return X_train,X_test
+
+def normalizefMRI(Y_train,Y_test):
+    min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))   
+    Y_train = min_max_scaler.fit_transform(Y_train)     
+    Y_test = min_max_scaler.transform(Y_test)
+    return Y_train,Y_test
 
 def initialize_weights(shape, dtype=None):
     """
