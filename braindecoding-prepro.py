@@ -31,8 +31,10 @@ for image in X_train2D:
 
 # %%
 stim6 = X_test2D[:5,:,:]
-#for img in stim6:
-#    imshow(img.transpose())
+for img in stim6:
+    imshow(img.transpose())
+
+# %%
 stim9 = X_test2D[5:,:,:]
 for img in stim9:
     imshow(img.transpose())
