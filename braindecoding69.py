@@ -47,15 +47,7 @@ inputa= np.append(mritrain61,mritrain91,axis = 0)
 inputb= np.append(mritrain62,mritrain92,axis = 0)
 inputs=[inputa,inputb]
 
-# Hyper parameters
-lr = 0.00006
-evaluate_every = 200 # interval for evaluating on one-shot tasks
-batch_size = 44
-n_iter = 20000 #20000 # No. of training iterations
-N_way = 20 # how many classes for testing one-shot tasks, banyak gambar per karakter x.
-n_val = 250 # how many one-shot tasks to validate on
-best = -1
-model_path = '../w/'
+
 
 def test_oneshot(model, inputs, targets, n_val, s = "val", verbose = 0):#tambah 4 parameter sesudah model
     """Test average N way oneshot learning accuracy of a siamese neural net over k one-shot tasks"""
@@ -87,4 +79,3 @@ for i in range(1, n_iter+1):# No. of training iterations 20000
             print("Current best: {0}, previous best: {1}".format(val_acc, best))
             best = val_acc
 
-            
